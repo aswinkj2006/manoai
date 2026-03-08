@@ -57,7 +57,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentTab, onTabChange })
                             backgroundColor: isActive ? 'rgba(28, 176, 246, 0.1)' : 'transparent',
                             marginBottom: '4px',
                         }}>
-                            {React.cloneElement(tab.icon as any, {
+                            {React.cloneElement(tab.icon as React.ReactElement<any>, {
                                 fill: isActive ? 'currentColor' : 'none',
                                 strokeWidth: isActive ? 2 : 2.5
                             })}

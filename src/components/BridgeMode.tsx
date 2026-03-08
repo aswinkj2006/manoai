@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Mic, MicOff, X, StopCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Mic, X, StopCircle } from 'lucide-react';
 import { AvatarViewer } from './AvatarViewer';
 
 // Polyfill types for SpeechRecognition
@@ -52,8 +51,8 @@ export const BridgeMode: React.FC<BridgeModeProps> = ({ onClose }) => {
 
             recognition.onend = () => {
                 // Auto-restart if it was supposed to be listening (avoids timeout disconnects)
-                if (isListening) {
-                    try { reconocimiento.start() } catch (e) { }
+                if (isListening && recognitionRef.current) {
+                    try { recognitionRef.current.start() } catch (e) { }
                 }
             };
 

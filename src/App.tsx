@@ -6,7 +6,7 @@ import { LearningPath } from './components/LearningPath';
 import { Lesson } from './components/Lesson';
 import { BridgeMode } from './components/BridgeMode';
 import { useAppStore } from './store';
-import { Medal, Trophy, Star, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { Medal, Trophy, MessageCircle, CheckCircle2 } from 'lucide-react';
 import './App.css';
 
 function App() {

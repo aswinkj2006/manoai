@@ -1,0 +1,9 @@
+﻿
+> mano.ai@0.0.0 build
+> tsc -b && vite build
+
+src/App.tsx(9,25): error TS6133: 'Star' is declared but its value is never read.
+src/components/BridgeMode.tsx(2,15): error TS6133: 'MicOff' is declared but its value is never read.
+src/components/BridgeMode.tsx(3,1): error TS6133: 'motion' is declared but its value is never read.
+src/components/BridgeMode.tsx(56,27): error TS2304: Cannot find name 'reconocimiento'.
+src/components/Lesson.tsx(339,113): error TS2367: This comparison appears to be unintentional because the types '"multiple-choice" | "etiquette" | undefined' and '"info"' have no overlap.

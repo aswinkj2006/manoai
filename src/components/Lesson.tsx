@@ -336,7 +336,7 @@ export const Lesson: React.FC<LessonProps> = ({ lessonId, onClose, onComplete })
                         )}
 
                         {/* Options Grid — visual sign cards or text buttons */}
-                        {currentQuestion.type !== 'ai-practice' && currentQuestion.type !== 'ai-interactive' && currentQuestion.type !== 'info' && (
+                        {currentQuestion.type !== 'ai-practice' && currentQuestion.type !== 'ai-interactive' && (
                             (() => {
                                 const hasSignOptions = currentQuestion.options?.every(o => o.signWord);
                                 if (hasSignOptions) {
