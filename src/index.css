@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Dark Glassmorphism Palette */
+  --color-bg: #09090b;
+  /* Zinc 950 */
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-surface-hover: rgba(255, 255, 255, 0.08);
+  --color-surface-active: rgba(255, 255, 255, 0.12);
+
+  --color-primary: #06b6d4;
+  /* Cyan 500 */
+  --color-primary-glow: rgba(6, 182, 212, 0.4);
+
+  --color-secondary: #f43f5e;
+  /* Rose 500 */
+  --color-secondary-glow: rgba(244, 63, 94, 0.4);
+
+  --color-accent: #8b5cf6;
+  /* Violet 500 */
+  --color-accent-glow: rgba(139, 92, 246, 0.4);
+
+  --color-success: #10b981;
+  /* Emerald 500 */
+
+  --color-text: #f8fafc;
+  /* Slate 50 */
+  --color-text-muted: #94a3b8;
+  /* Slate 400 */
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-glow: rgba(255, 255, 255, 0.2);
+
+  /* Glass Effects */
+  --blur-md: blur(12px);
+  --blur-lg: blur(24px);
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(6, 182, 212, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Glass Panel Base */
+.glass-panel {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: var(--blur-lg);
+  -webkit-backdrop-filter: var(--blur-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+/* Futuristic Button Base */
+.btn-glass {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  backdrop-filter: var(--blur-md);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.btn-glass:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-glow);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.btn-glass:active {
+  transform: translateY(0);
+  background: var(--color-surface-active);
+}
+
+/* Primary Cyan Button */
+.btn-cyan {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0 0 15px var(--color-primary-glow);
+}
+
+.btn-cyan:hover {
+  background: rgba(6, 182, 212, 0.2);
+  box-shadow: 0 0 25px var(--color-primary-glow);
+}
+
+/* Secondary Rose Button */
+.btn-rose {
+  background: rgba(244, 63, 94, 0.1);
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.btn-rose:hover {
+  background: rgba(244, 63, 94, 0.2);
+  box-shadow: 0 0 20px var(--color-secondary-glow);
+}
+
+/* Success Emerald Button */
+.btn-emerald {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.btn-emerald:hover {
+  background: rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+/* App Container */
+.app-container {
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: transparent;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-hover);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-active);
+}

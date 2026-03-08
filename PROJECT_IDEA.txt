@@ -1,0 +1,159 @@
+================================================================================
+  Mano.AI — Sign Language Learning App
+  Project Concept & Feature Overview
+================================================================================
+
+PROJECT VISION
+--------------
+Mano.AI is a Duolingo-inspired Progressive Web App (PWA) for learning American Sign
+Language (ASL). Unlike a typical flashcard app, Mano.AI combines gamified learning,
+real-time AI-powered hand tracking, 3D interactive hand models, and structured
+pedagogical modules to create an immersive, self-paced ASL learning platform.
+
+The core idea: make learning sign language as accessible, enjoyable, and effective
+as learning a spoken language through a mainstream app — and do it entirely in the
+browser, no installations required.
+
+
+TECH STACK
+----------
+- Framework     : React + TypeScript (Vite)
+- 3D Rendering  : React Three Fiber + Three.js + Drei
+- AI/ML         : MediaPipe Tasks Vision (HandLandmarker + FaceLandmarker)
+- Gesture Logic : Fingerpose (gesture estimation on landmark data)
+- Animations    : Framer Motion
+- State         : Zustand (useAppStore)
+- Persistence   : localStorage (progress, streaks, XP, achievements)
+- Styling       : Vanilla CSS (Dark Glassmorphism aesthetic)
+- Camera        : react-webcam
+
+
+DESIGN AESTHETIC
+----------------
+Dark Glassmorphism — a premium, futuristic UI built on:
+- Near-black background (#09090b)
+- Frosted glass panels (rgba + backdrop-filter: blur)
+- Cyan/teal primary (#00e5ff) and rose accent (#ff0055)
+- Neon glows and subtle gradients
+- Smooth micro-animations on all interactive elements
+
+
+CORE FEATURES
+-------------
+
+1. STRUCTURED LEARNING PATH
+   - 5 modules, each with multiple in-depth lessons
+   - Lessons unlock sequentially (complete one to unlock the next)
+   - Per-module progress bars and per-lesson XP badges shown on the path
+   - Module icons and lesson counts displayed clearly
+
+   Modules:
+     Module 1 — The ASL Alphabet (6 lessons, A-Z)
+     Module 2 — Numbers & Counting (3 lessons, 1–20)
+     Module 3 — Greetings & Courtesy (3 lessons, Hello to How Are You?)
+     Module 4 — Essential Words (2 lessons, Yes/No, Name/Help/Love)
+     Module 5 — Deaf Culture & Etiquette (2 lessons)
+
+2. LESSON TYPES & QUESTION FORMATS
+   - Info Intro Cards: Every lesson opens with a full-screen concept slide
+     explaining what the student is about to learn, before any practice starts.
+   - ai-interactive: Split-screen — 3D hand model on left (study the sign),
+     live webcam with AI tracking on right (try it yourself).
+   - multiple-choice: MCQ questions with 4 options, identifies hand shapes or
+     contextual knowledge.
+   - ai-practice: Full-screen AI detection challenge — student must hold the
+     correct hand sign until the tracker confirms accuracy.
+   - etiquette: Scenario-based questions about Deaf community norms.
+
+3. 3D INTERACTIVE HAND MODEL (AvatarViewer)
+   - Built with React Three Fiber + custom Three.js geometry
+   - Anatomically structured hand: palm + 4 articulated fingers
+     (3 phalanges each: proximal, middle, distal) + thumb
+   - Procedural pose system: each letter/number/sign has a config defining
+     MCP curl, PIP curl, finger spread, and wrist rotation
+   - 40+ poses defined:
+       All 26 letters A-Z
+       Numbers 1-10
+       Signs: Hello, Goodbye, Thank You, Please, Sorry, Yes, No,
+              Love, Help, Name, Fine, Want, You
+   - Animated poses: Hello (waving), Yes (nodding), No (shaking)
+   - Draggable 360° orbit controls + zoom
+   - Sign label badge displaying LETTER / NUMBER / SIGN category
+
+4. AI GESTURE DETECTION (AITracker)
+   - Uses MediaPipe HandLandmarker to detect 21 hand landmarks per frame
+   - Fingerpose library estimates gesture from normalized landmark coordinates
+   - 21 ASL gesture definitions covering:
+       Letters: A B C D E F G I K L O R S U V W Y
+       Signs: HELLO
+       Numbers: 1 2 5
+   - Each gesture uses curl (NoCurl, HalfCurl, FullCurl) +
+     directional constraints to reduce false positives
+   - HUD overlay with scanning animation, corner brackets, and live
+     feedback text (e.g., "Seeing B, adjust to A")
+   - Optional face tracking: FaceLandmarker checks brow raise for
+     question-grammar markers in ASL (eyebrows up = yes/no question)
+   - 1-second hold time before success fires to avoid accidental triggers
+
+5. GAMIFICATION LAYER
+   - XP (experience points) awarded on lesson completion (100-150 XP)
+   - Daily streak tracking with localStorage persistence
+   - Heart/lives system (3 lives per lesson; lose one on wrong answer)
+   - Confetti explosion + haptic vibration on lesson completion
+   - Achievements system (e.g., "first-steps" badge on first lesson)
+   - Leaderboard tab showing mock global ranking
+
+6. BRIDGE MODE (Conversation Practice)
+   - Floating action button on the Learn tab opens Bridge Mode
+   - A real-time sign-to-text overlay for open practice
+   - Designed for free-form signing beyond structured lessons
+
+7. PROGRESS PERSISTENCE
+   - Completed lessons and unlocked lessons stored in localStorage
+   - App re-hydrates progress on reload
+   - Streak updated daily based on last-practice timestamp
+   - Reset Progress button in profile for a fresh start
+
+8. PROFILE & SETTINGS
+   - Regional Dialect selector: ASL / BSL / ISL
+   - Achievements gallery
+   - Lessons completed count and streak display
+
+
+USER FLOW
+---------
+1. User opens app → sees learning path with 5 modules
+2. Opens Lesson 1 → greeted by Info Intro Card explaining the lesson
+3. Clicks "LET'S GO" → enters first question
+4. ai-interactive questions: studies 3D hand on left, mirrors sign on webcam right
+5. AI recognizes correct sign → "Excellent decoding!" feedback
+6. Multiple-choice questions: selects correct answer → VERIFY LOGIC
+7. Completes all questions → confetti, XP awarded, next lesson unlocks
+8. Can enter Bridge Mode for free-form conversation practice anytime
+
+
+FUTURE ROADMAP IDEAS
+--------------------
+- Load actual GLTF/GLB hand model files for photorealistic rendering
+- Expand AI detection to all 26 letters using custom TensorFlow.js model
+- Add BSL and ISL gesture packs for the dialect switcher
+- Sentence-level lessons ("How are you?" as a complete signed phrase)
+- Social features: friend challenges, weekly streak competitions
+- Offline PWA support via service worker caching
+- Video library: curated YouTube embeds for every sign taught
+- Speech-to-sign: type a word, see the fingerspelled version animated
+- Sign-to-text: continuous signing recognized and transcribed live
+
+
+DESIGN PRINCIPLES
+-----------------
+- Learning first: every feature serves comprehension and retention
+- Accessible: pure browser-based, no app store required
+- Culturally respectful: Deaf culture and etiquette are taught alongside signs
+- Progressive: each lesson builds on the last; no skipping ahead
+- Immediate feedback: AI gives real-time corrections, not just pass/fail
+
+
+================================================================================
+  Built with React + Three.js + MediaPipe | Dark Glassmorphism UI
+================================================================================
