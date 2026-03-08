@@ -94,7 +94,8 @@ export const COURSE_DATA: Record<string, LessonData> = {
             {
                 id: 102,
                 text: "Which hand shape is the letter 'A'? Pick the correct sign.",
-                visual: '🤜',
+                visual: 'A',
+                signWord: 'A',
                 options: [
                     { id: 1, text: 'B', signWord: 'B' },
                     { id: 2, text: 'A', signWord: 'A', isCorrect: true },
@@ -113,13 +114,14 @@ export const COURSE_DATA: Record<string, LessonData> = {
             },
             {
                 id: 104,
-                text: "For ASL 'B', where does the thumb go?",
-                visual: '🖐️',
+                text: "For ASL 'B', which hand shows the correct thumb position? The thumb should fold across the palm.",
+                visual: 'B',
+                signWord: 'B',
                 options: [
-                    { id: 1, text: 'Pointing up alongside the fingers' },
-                    { id: 2, text: 'Folded across the palm below the fingers', isCorrect: true },
-                    { id: 3, text: 'Touching the tip of the index finger' },
-                    { id: 4, text: 'Extended out to the side' },
+                    { id: 1, text: 'A', signWord: 'A' },
+                    { id: 2, text: 'B', signWord: 'B', isCorrect: true },
+                    { id: 3, text: 'S', signWord: 'S' },
+                    { id: 4, text: 'L', signWord: 'L' },
                 ]
             },
             {

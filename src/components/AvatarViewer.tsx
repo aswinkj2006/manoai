@@ -44,14 +44,16 @@ const poses: Record<string, HandPose> = {
         middle: { mcp: CURL, pip: CURL },
         ring: { mcp: CURL, pip: CURL },
         pinky: { mcp: CURL, pip: CURL },
-        thumb: [0.1, 0.5], // thumb alongside index, upright
+        thumb: [0.55, 0.25], // thumb pressed snugly alongside fist, not pointing up
+        wristX: -0.15, // slight tilt so fist faces camera more cleanly
     },
     B: {
-        index: { mcp: 0, pip: 0 },
-        middle: { mcp: 0, pip: 0 },
-        ring: { mcp: 0, pip: 0 },
-        pinky: { mcp: 0, pip: 0 },
-        thumb: [Math.PI / 1.8, 0.2], // thumb folded across palm
+        index: { mcp: 0, pip: 0, spread: 0.04 },
+        middle: { mcp: 0, pip: 0, spread: 0 },
+        ring: { mcp: 0, pip: 0, spread: -0.04 },
+        pinky: { mcp: 0, pip: 0, spread: -0.08 },
+        thumb: [Math.PI / 1.6, 0.05], // thumb folded firmly across lower palm
+        wristX: -0.1, // upright so 4 fingers clearly point straight up
     },
     C: {
         index: { mcp: HALF, pip: HALF, spread: 0.05 },
@@ -599,9 +601,10 @@ const PoseLabel = ({ word }: { word: string }) => {
 // ─── AVATAR VIEWER EXPORT ─────────────────────────────────────────────────────
 interface AvatarViewerProps {
     currentWord: string;
+    showLabel?: boolean; // whether to show the LETTER/SIGN badge overlay (default: true)
 }
 
-export const AvatarViewer: React.FC<AvatarViewerProps> = ({ currentWord }) => {
+export const AvatarViewer: React.FC<AvatarViewerProps> = ({ currentWord, showLabel = true }) => {
     const isKnown = currentWord && (poses[currentWord] !== undefined);
 
     return (
@@ -635,8 +638,8 @@ export const AvatarViewer: React.FC<AvatarViewerProps> = ({ currentWord }) => {
                 />
             </Canvas>
 
-            {/* Sign label */}
-            {currentWord && <PoseLabel word={currentWord} />}
+            {/* Sign label — hidden on quiz option cards to avoid revealing the answer */}
+            {currentWord && showLabel && <PoseLabel word={currentWord} />}
 
             {/* Rotation hint */}
             <div style={{

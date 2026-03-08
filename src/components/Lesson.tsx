@@ -387,24 +387,9 @@ export const Lesson: React.FC<LessonProps> = ({ lessonId, onClose, onComplete })
                                                             position: 'relative',
                                                         }}
                                                     >
-                                                        {/* Mini 3D hand model — takes up most of the card */}
+                                                        {/* Mini 3D hand model — takes up most of the card, label hidden to avoid revealing answer */}
                                                         <div style={{ flex: 1, width: '100%', pointerEvents: 'none' }}>
-                                                            <AvatarViewer currentWord={option.signWord!} />
-                                                        </div>
-                                                        {/* Letter label at bottom */}
-                                                        <div style={{
-                                                            width: '100%',
-                                                            padding: '8px 0',
-                                                            textAlign: 'center',
-                                                            fontWeight: 800,
-                                                            fontSize: '1.1rem',
-                                                            letterSpacing: '1px',
-                                                            color: isSelected ? 'var(--color-primary)' : showResult && option.isCorrect ? 'var(--color-success)' : 'var(--color-text)',
-                                                            background: 'rgba(0,0,0,0.4)',
-                                                            backdropFilter: 'blur(4px)',
-                                                            borderTop: `1px solid ${borderColor}30`,
-                                                        }}>
-                                                            {option.text}
+                                                            <AvatarViewer currentWord={option.signWord!} showLabel={false} />
                                                         </div>
                                                         {/* Checkmark overlay for correct answer when shown */}
                                                         {showResult && option.isCorrect && (
